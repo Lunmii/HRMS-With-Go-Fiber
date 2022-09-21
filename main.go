@@ -111,7 +111,7 @@ func main() {
 		}
 		err = mg.Db.Collection("employees").FindOneAndUpdate(c.Context(), query, update).Err()
 		if err != nil {
-			if err == mongo.ErrNoDocumentsDocument {
+			if err == mongo.ErrNoDocuments {
 				return c.SendStatus(400)
 			}
 			return c.SendStatus(500)
