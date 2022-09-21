@@ -130,13 +130,13 @@ func main() {
 		}
 
 		query := bson.D{{Key: "_id", Value: employeeID}}
-		results, err := mg.Db.Collection("employees").DeleteOne(c.Context(), query)
+		result, err := mg.Db.Collection("employees").DeleteOne(c.Context(), query)
 
 		if err != nil {
 			return c.SendStatus(500)
 		}
 
-		if err != nil {
+		if result.DeletedCount < 1 {
 			return c.SendStatus(404)
 		}
 
