@@ -21,6 +21,7 @@ const dbName = "fiber-hrms"
 const mongoURI = "mongodb+srv://lumi:<password>@cluster0.yl6aswd.mongodb.net/?retryWrites=true&w=majority" + dbName
 
 // connect using MongoDB URI or local host
+
 type Employee struct {
 	ID     string  `json:"id,omitempty" bson:"_id,omitempty"`
 	Name   string  `json:"name"`
@@ -121,7 +122,7 @@ func main() {
 
 		return c.Status(200).JSON(employee)
 	})
-	app.Delete("/employee/:id", func(ctx *fiber.Ctx) error {
+	app.Delete("/employee/:id", func(c *fiber.Ctx) error {
 
 		employeeID, err := primitive.ObjectIDFromHex(c.Params("id"))
 
